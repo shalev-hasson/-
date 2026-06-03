@@ -13,10 +13,9 @@ The submission contains:
 ```text
 Solver.py
 README.md
-solution_small_02.json
-solution_medium_01.json
-solution_medium_02.json
-solution_large_01.json
+sol_small_01.json
+sol_small_02.json
+sol_medium_01.json
 ```
 
 The following files were used for validation:
@@ -72,31 +71,6 @@ For example:
 python Solver.py small_02.json solution_small_02.json
 ```
 
-The released benchmark instances can be solved using:
-
-```bash
-python Solver.py small_02.json solution_small_02.json
-python Solver.py medium_01.json solution_medium_01.json
-python Solver.py medium_02.json solution_medium_02.json
-python Solver.py large_01.json solution_large_01.json
-```
-
-### Running on a directory of instances
-
-The solver also supports running on a directory of JSON instances:
-
-```bash
-python Solver.py instances_dir output_dir
-```
-
-For example:
-
-```bash
-python Solver.py instances solutions
-```
-
-In this mode, the solver reads all `.json` files from the input directory, skips solution files and schema files, and writes one solution file per instance to the output directory.
-
 ### Running from PyCharm without command-line arguments
 
 The solver contains a default run configuration at the end of `Solver.py`:
@@ -139,10 +113,10 @@ The official objective value is the total cost reported by `check_solution.py`.
 The solutions were produced on the following machine:
 
 ```text
-Operating system: Windows [fill in version, e.g. Windows 11]
-Python distribution: Anaconda Python [fill in version]
-CPU: [fill in CPU model]
-RAM: [fill in RAM size]
+Operating system: Windows 11 home
+Python distribution: Anaconda Python 3.11.15
+CPU:  Intel(R) Core(TM) i7-1065G7 CPU @ 1.30GHz‏, ‎1498 Mhz
+RAM: 16.0 GB
 ```
 
 ## Wall-Clock Time and Results
@@ -151,34 +125,13 @@ The following table reports the wall-clock time used to produce each solution an
 
 | Instance | Output file | Wall-clock time | Checker result | Objective value |
 |---|---:|---:|---:|---:|
-| small_02 | solution_small_02.json | [fill in seconds] | [OK / failed] | [fill in checker total] |
-| medium_01 | solution_medium_01.json | [fill in seconds] | [OK / failed] | [fill in checker total] |
-| medium_02 | solution_medium_02.json | [fill in seconds] | [OK / failed] | [fill in checker total] |
-| large_01 | solution_large_01.json | [fill in seconds] | [OK / failed] | [fill in checker total] |
-
-Optional debugging instance:
-
-| Instance | Output file | Wall-clock time | Checker result | Objective value |
-|---|---:|---:|---:|---:|
-| small_01 | sol_small_01.json | [fill in seconds] | [OK / failed] | [fill in checker total] |
+| small_01 | sol_small_01.json | 15.78 | OK | 12,812.75 |
+| small_02 |  sol_small_02.json | 15.99 | OK | 13,845.25 |
+| medium_01 | sol_medium_01.json | 40.29 | OK | 20,335.25 |
 
 ## Measuring Runtime
 
 Runtime was measured as wall-clock time.
-
-On Windows PowerShell, the following command can be used:
-
-```powershell
-Measure-Command { python Solver.py small_02.json solution_small_02.json }
-```
-
-When using the full Anaconda Python path:
-
-```powershell
-Measure-Command { C:\Users\bensn\anaconda3\python.exe Solver.py small_02.json solution_small_02.json }
-```
-
-The value `TotalSeconds` should be recorded in the runtime table above.
 
 ## Notes
 
@@ -186,15 +139,15 @@ The solver prioritizes feasibility and checker compliance.
 
 Each generated duty is constructed to satisfy the following main constraints:
 
-- every service trip is covered exactly once;
-- each duty starts at the depot and ends at the depot;
-- each driver operates exactly one vehicle during the shift;
-- shift length is within the allowed range;
-- shift start and shift end are on quarter-hour marks;
-- each duty contains exactly one legal meal break;
-- service trips depart at their scheduled departure times;
-- deadhead trips are only between the depot and a terminal;
-- activity sequences are time-contiguous and location-contiguous;
+- every service trip is covered exactly once
+- each duty starts at the depot and ends at the depot
+- each driver operates exactly one vehicle during the shift
+- shift length is within the allowed range
+- shift start and shift end are on quarter-hour marks
+- each duty contains exactly one legal meal break
+- service trips depart at their scheduled departure times
+- deadhead trips are only between the depot and a terminal
+- activity sequences are time-contiguous and location-contiguous
 - terminal capacity is checked before accepting local improvements.
 
 The algorithm is a heuristic, so it does not guarantee an optimal solution. However, it is designed to produce feasible solutions quickly and to reduce cost through greedy duty extension, local merging of duties, and reuse of physical vehicles across non-overlapping shifts.
