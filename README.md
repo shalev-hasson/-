@@ -6,20 +6,6 @@ This solver was developed for the SSP 2026 Shuttle Bus Vehicle & Driver Scheduli
 
 The program receives an input instance in JSON format and produces a solution JSON file containing the list of driver duties. Each duty includes the assigned driver, vehicle, shift start and end times, meal break, and the full ordered activity sequence.
 
-## Method Summary
-
-The solver uses a greedy Sequential VSP -> CSP heuristic.
-
-First, all scheduled service trips are sorted chronologically. Then, each trip is considered one by one. For every trip, the algorithm tries to append it to an existing feasible duty. A duty is considered feasible only if it respects the vehicle movement rules, driver shift rules, meal-break constraints, and activity-sequence requirements.
-
-If the trip cannot be added to any existing duty, a new duty is opened.
-
-After the initial solution is created, the solver performs a short local-improvement phase. In this phase, it attempts to merge compatible pairs of duties when doing so reduces the cost proxy and keeps the solution feasible.
-
-Finally, physical vehicle IDs are assigned. Vehicles are reused across non-overlapping duties whenever possible, in order to reduce the fixed vehicle cost.
-
-The method is heuristic and does not guarantee global optimality. The main goal is to produce feasible checker-approved solutions quickly, while reducing driver cost, deadhead cost, and vehicle usage.
-
 ## Files
 
 The submission contains:
