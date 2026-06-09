@@ -13,9 +13,8 @@ The submission contains:
 ```text
 Solver.py
 README.md
-sol_small_01.json
-sol_small_02.json
-sol_medium_01.json
+sol_medium_02.json
+
 ```
 
 The following files were used for validation:
@@ -125,9 +124,7 @@ The following table reports the wall-clock time used to produce each solution an
 
 | Instance | Output file | Wall-clock time | Checker result | Objective value |
 |---|---:|---:|---:|---:|
-| small_01 | sol_small_01.json | 15.78 | OK | 12,812.75 |
-| small_02 |  sol_small_02.json | 15.99 | OK | 13,845.25 |
-| medium_01 | sol_medium_01.json | 40.29 | OK | 20,335.25 |
+| medium_02 | sol_medium_02.json | 45.77 | OK | 24,610.75 |
 
 ## Measuring Runtime
 
